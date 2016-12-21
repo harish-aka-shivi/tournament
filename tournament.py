@@ -57,6 +57,11 @@ def registerPlayer(name):
     print query
     c.execute(query,(name,));
     connection.commit();
+
+    query1 = "INSERT INTO standings (standings_id,name,wins,matches) VALUES ((SELECT player_id from players where name = %s),%s,0,0);"
+    c.execute(query1,(name,name));
+    connection.commit();
+
     connection.close;
 
     """Adds a player to the tournament database.
@@ -70,6 +75,8 @@ def registerPlayer(name):
 
 
 def playerStandings():
+
+
     """Returns a list of the players and their win records, sorted by wins.
 
     The first entry in the list should be the player in first place, or a player
