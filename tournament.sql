@@ -7,4 +7,4 @@ CREATE TABlE players (player_id SERIAL UNIQUE NOT NULL,
 CREATE TABLE matches (match_id SERIAL UNIQUE NOT NULL, winner_id int,loser_id int);
 -- You can write comments in this file by starting them with two dashes, like
 -- these lines here.
-CREATE TABLE standings (standings_id int REFERENCES players(player_id),name TEXT ,wins integer,matches integer);
+CREATE TABLE standings (standings_id int REFERENCES players(player_id) ON DELETE CASCADE,name TEXT ,wins integer,matches integer);

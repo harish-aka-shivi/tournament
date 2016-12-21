@@ -54,11 +54,13 @@ def registerPlayer(name):
     connection = connect()
     c  = connection.cursor();
     query = "INSERT INTO players (name) VALUES (%s);"
-    print query
+    #print "insert query in register player is -->",query
     c.execute(query,(name,));
     connection.commit();
 
     query1 = "INSERT INTO standings (standings_id,name,wins,matches) VALUES ((SELECT player_id from players where name = %s),%s,0,0);"
+    #print "insert query1 in register player is -->",query1
+
     c.execute(query1,(name,name));
     connection.commit();
 
@@ -75,6 +77,16 @@ def registerPlayer(name):
 
 
 def playerStandings():
+
+    db = connect();
+    c = db.cursor();
+    query = "SELECT * from standings;"
+    c.execute(query);
+    result = c.fetchall();
+    db.commit;
+    db.close;
+    print result;
+    return result
 
 
     """Returns a list of the players and their win records, sorted by wins.
