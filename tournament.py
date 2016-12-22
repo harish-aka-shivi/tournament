@@ -10,7 +10,6 @@ def connect():
     """Connect to the PostgreSQL database.  Returns a database connection."""
     try:
         db =  psycopg2.connect("dbname=tournament")
-        print "connected to database" , db
         return db
     except Exception as e:
         print "what the hell!!!"
@@ -22,6 +21,10 @@ def deleteMatches():
     c  = connection.cursor();
     query = "DELETE FROM matches;"
     c.execute(query);
+    connection.commit();
+
+    query1 = "UPDATE standings SET matches = %s,wins = %s ;"
+    c.execute(query1,(0,0));
     connection.commit();
     connection.close
 
@@ -80,7 +83,7 @@ def playerStandings():
 
     db = connect();
     c = db.cursor();
-    query = "SELECT * from standings;"
+    query = "SELECT * from standings ORDER BY wins DESC;"
     c.execute(query);
     result = c.fetchall();
     db.commit;
@@ -104,6 +107,25 @@ def playerStandings():
 
 
 def reportMatch(winner, loser):
+
+    db = connect();
+    cursor = db.cursor();
+    query = "INSERT into matches (match_id,winner_id,loser_id) VALUES (DEFAULT,%s,%s);"
+    cursor.execute(query,(winner,loser));
+    db.commit();
+
+
+    query1 = "UPDATE standings SET wins = wins + %s,matches = matches + %s where standings_id = %s;"
+    cursor.execute(query1,(1,1,winner));
+
+    query1 = "UPDATE standings SET matches = matches + %s where standings_id = %s;"
+    cursor.execute(query1,(1,loser));
+
+    db.commit();
+
+    db.close;
+
+
     """Records the outcome of a single match between two players.
 
     Args:
