@@ -88,7 +88,7 @@ def playerStandings():
     result = c.fetchall();
     db.commit;
     db.close;
-    print result;
+    #print result;
     return result
 
 
@@ -135,10 +135,32 @@ def reportMatch(winner, loser):
 
 
 def swissPairings():
+    listSwissPairing = []
+    result = playerStandings();
+    for i in range(len(result)//2):
+        entryTuple = (result[2*i][0],result[2*i][1],result[2*i+1][0],result[2*i+1][1])
+        listSwissPairing.append(entryTuple)
+    print "list swiss pairing in -- > ",listSwissPairing, "\n"
+    return listSwissPairing
+
+    # db = connect();
+    # cursor = db.cursor();
+    # query = "SELECT a.standings_id,a.name,b.standings_id,b.name from standings as a, standings as b where a.wins = b.wins and a.matches = b.matches"
+    # #query = "SELECT count(*) from standings"
+    # cursor.execute(query);
+    # result = cursor.fetchall();
+    # db.commit();
+    # db.close;
+    # print ";result in swiss pairing is ", result
+    #
+    # #swissPairedList = [];
+    # return result;
+    #
+
     """Returns a list of pairs of players for the next round of a match.
 
     Assuming that there are an even number of players registered, each player
-    appears exactly once in the pairings.  Each player is paired with another
+    appears exactly once in the pairings. Each player is paired with another
     player with an equal or nearly-equal win record, that is, a player adjacent
     to him or her in the standings.
 
