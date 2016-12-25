@@ -7,26 +7,6 @@ Structure of project:
     tournament.py has all the function which deals with database and returns the approprate outputs. 
     tournament_test.sql has been provided as a part of Udacity course : Intro to Relational Databases. Its has test cases to     	 validate the database operations.
 
-Structure of file:
-tournament.sql has all the table creation files
-tournament.py has all the function which deals with database and returns the approprate outputs.
-tournament_test.sql has been provided as a part of Udacity course : Intro to Relational Databases. Its has test cases to validate 
-the database operations.
-Structure of file:
-tournament.sql has all the table creation files
-tournament.py has all the function which deals with database and returns the approprate outputs.
-tournament_test.sql has been provided as a part of Udacity course : Intro to Relational Databases. Its has test cases to validate 
-the database operations.
-Structure of file:
-tournament.sql has all the table creation files
-tournament.py has all the function which deals with database and returns the approprate outputs.
-tournament_test.sql has been provided as a part of Udacity course : Intro to Relational Databases. Its has test cases to validate 
-the database operations.
-Structure of file:
-tournament.sql has all the table creation files
-tournament.py has all the function which deals with database and returns the approprate outputs.
-tournament_test.sql has been provided as a part of Udacity course : Intro to Relational Databases. Its has test cases to validate 
-the database operations.
 Example of a 16 Player Swiss Tournament:
 First round pairing is by random draw. For example, with 16 players they would be matched into 8 random pairs for the first round. 
 For now, assume all games have a winner, and there are no draws.
